@@ -1,0 +1,22 @@
+grammar org.xtext.example.BeanDsl with org.eclipse.xtext.common.Terminals
+
+generate beanDsl "http://www.xtext.org/example/BeanDsl"
+
+Root:
+	beans+=Bean*;
+
+Bean:
+	'bean' name=ID '{'
+		property+=Property*
+	'}'
+;
+
+Property:
+	name=ID ':' (simpleType=TYPE | reference=[Bean]) list?='*'?
+;
+
+enum TYPE:
+	String | Int
+;
+	
+

@@ -1,0 +1,27 @@
+grammar org.xtext.example.BeanDsl with org.eclipse.xtext.xbase.Xbase
+
+generate beanDsl "http://www.xtext.org/example/BeanDsl"
+
+Root:
+	importSection=XImportSection?
+	beans+=Bean*;
+
+Bean:
+	'bean' name=ID '{'
+		elements+=Element*
+	'}'
+;
+
+Element:
+	Property | Operation
+;
+
+Operation:
+	'op' returnType=JvmTypeReference? name=ID '('parameters+=JvmFormalParameter? (','parameters+=JvmFormalParameter)* ')'
+	expression = XBlockExpression
+;
+
+Property:
+	name=ID ':' type=JvmTypeReference;
+	
+

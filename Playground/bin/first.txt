@@ -1,0 +1,7 @@
+bean Person {
+	name: String
+}
+
+bean Company {
+	persons : Person *
+}
